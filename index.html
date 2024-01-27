@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Using Custom Property</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div style="--spd:1" class="dot"></div>
+        <div style="--spd:2" class="dot"></div>
+        <div style="--spd:3" class="dot"></div>
+        <div style="--spd:4" class="dot"></div>
+        <div style="--spd:5" class="dot"></div>
+        <div style="--spd:6" class="dot"></div>
+        <div style="--spd:7" class="dot"></div>
+        <div style="--spd:8" class="dot"></div>
+        <div style="--spd:9" class="dot"></div>
+        <div style="--spd:10" class="dot"></div>
+        <div style="--spd:11" class="dot"></div>
+        <div style="--spd:12" class="dot"></div>
+        <div style="--spd:13" class="dot"></div>
+        <div style="--spd:14" class="dot"></div>
+        <div style="--spd:15" class="dot"></div>
+        <div style="--spd:16" class="dot"></div>
+        <div style="--spd:17" class="dot"></div>
+        <div style="--spd:18" class="dot"></div>
+        <div style="--spd:19" class="dot"></div>
+        <div style="--spd:20" class="dot"></div>
+    </div>
+    <div class="box">
+        <div style="--i:1" class="card__wrapper">
+            <div class="card">
+
+            </div>
+        </div>
+        <div style="--i:2" class="card__wrapper">
+            <div class="card">
+
+            </div>
+        </div>
+    </div>
+</body>
+    <style>
+        .wrapper {
+            /* position: relative; */
+            display: grid;
+            gap: 5px;
+            margin-block: 50px;
+            /* transform: rotateX(70deg); */
+        }
+        .dot {
+            position: relative;
+            width: 100px;
+            height: 2px;
+            background-color: red;
+            border-radius: 50px;
+            cursor: pointer;
+
+            perspective: 1000px;
+            animation: rotate 5s infinite linear;
+            animation-delay: calc(var(--spd) * 0.5s);
+        }
+        .dot::before, .dot::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            transform: translateY(-25%);
+            width: 5px; 
+            height: 5px; 
+            border-radius: 50px;
+            background-color: red;
+        }
+        .dot::before {
+            left: 0;
+        }
+        .dot::after {
+            right: 0;
+        }
+        @keyframes rotate {
+            100% {
+                transform: scale(-1);
+            }
+        }
+        .card__wrapper {
+            height: 150px;
+            width: 120px;
+            border-radius: 10px;
+            background-color: transparent;
+            border: solid 1px red;
+            position: relative;
+            overflow: hidden;
+        }
+        .card__wrapper::before, .card__wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+        }
+        .card__wrapper::before {
+            width: 180px;
+            height: 180px;
+            border-radius: 200px;
+            background: conic-gradient(#ff473a, #311c2f, #3af8ff00, #4ef9c600);
+            filter: blur(8px);
+            transform: translate(-20%, -10%);
+            animation: move 5s infinite linear;
+            animation-delay: calc(var(--i) * 0.5s);
+        }
+        .card__wrapper::after {
+            height: 140px;
+            width: 110px;
+            border-radius: 10px;
+            transform: translate(5px, 5px);
+            background-color: red;
+        }
+        @keyframes move {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</html>
