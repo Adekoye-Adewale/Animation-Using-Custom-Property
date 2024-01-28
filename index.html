@@ -29,6 +29,11 @@
         <div style="--spd:20" class="dot"></div>
     </div>
     <div class="box">
+        <div style="--i:0" class="card__wrapper">
+            <div class="card">
+
+            </div>
+        </div>
         <div style="--i:1" class="card__wrapper">
             <div class="card">
 
@@ -97,14 +102,16 @@
             inset: 0;
         }
         .card__wrapper::before {
-            width: 180px;
-            height: 180px;
-            border-radius: 200px;
-            background: conic-gradient(#ff473a, #311c2f, #3af8ff00, #4ef9c600);
-            filter: blur(8px);
-            transform: translate(-20%, -10%);
-            animation: move 5s infinite linear;
-            animation-delay: calc(var(--i) * 0.5s);
+            width: 30px;
+            height: 80px;
+            /* border-radius: 200px; */
+            background: linear-gradient(to right,#ff473a00, #ff473a3d, #ff473a91, #ff473a, #ff2515);
+            filter: blur(2px);
+            top: 30px;
+            left: 40px;
+            animation: move 4.5s 5 linear;
+            animation-duration: 5s;
+            animation-delay: calc(var(--i) * 5s);
         }
         .card__wrapper::after {
             height: 140px;
@@ -112,12 +119,13 @@
             border-radius: 10px;
             transform: translate(5px, 5px);
             background-color: red;
+            display: none;
         }
         @keyframes move {
-            0% {
+            from {
                 transform: rotate(0deg);
             }
-            100% {
+            to {
                 transform: rotate(360deg);
             }
         }
